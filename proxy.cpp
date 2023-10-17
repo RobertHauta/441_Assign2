@@ -105,19 +105,28 @@ int main() {
 
     std::cout << "Message received: " << buffer << std::endl;
 
-    if(buffer[0] == 'P'){continue;}
+    if(buffer[0] == 'P'){
+        std::cout << "Post skipped";
+        continue;
+    }
 
     send(client_sock, buffer, 4096,0);
     std::cout << "Request to website sent!" << std::endl;
     read(client_sock, buffer1, 4096);
     std::cout << "Message Recieved from website!" << std::endl;
 
+    std::cout << buffer1 << std::endl;
     // Sending a response to the client
-    send(return_sock, buffer1, 4096, 0);
+    std::string s = buffer1;
+    std::regex frog("frog\\s|Frog\\s|FRog\\s|FROg\\s|FROG\\s|fROG\\s|frOG\\s|froG\\s|fRog\\s|frOg\\s|FrOG\\s|FRoG\\s|fRoG\\s|FrOg\\s|fRog\\s|frOg\\s");
+    s = std::regex_replace(s, frog, "fred ");
+    std::cout << s << std::endl;
+
+    send(return_sock, s.c_str(), 4096, 0);
     //send(return_sock, "\r\n\r\n", strlen("\r\n\r\n"),0);
     std::cout << "Hello message sent" << std::endl;
     }
-    
+    std::cout << "End of main" << std::endl;
     return 0;
 }
 

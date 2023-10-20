@@ -151,7 +151,6 @@ int main() {
     std::cout << "Message Recieved from website!" << std::endl;
 
     //std::cout << buffer1 << std::endl;
-    // Sending a response to the client
     //std::string s = buffer1;
 
     //regex for replacing frog with fred
@@ -161,6 +160,8 @@ int main() {
     s = std::regex_replace(s, frogdash, " fred-");
     std::regex frogs("frogs\\s|Frogs\\s|FRogs\\s|FROgs\\s|FROGs\\s|fROGs\\s|frOGs\\s|froGs\\s|fRogs\\s|frOgs\\s|FrOGs\\s|FRoGs\\s|fRoGs\\s|FrOgs\\s|fRogs\\s|frOgs\\s");
     s = std::regex_replace(s, frogs, "freds ");
+    std::regex froggy("\\sfrogg");
+    s = std::regex_replace(s, froggy, " fredg");
     std::cout << s << std::endl;
 
     //sends data back to web browser
@@ -171,13 +172,3 @@ int main() {
     std::cout << "End of main" << std::endl;
     return 0;
 }
-
-    // // Sending a message to the server
-    // send(sock, "Hello from client", strlen("Hello from client"), 0);
-    // std::cout << "Hello message sent" << std::endl;
-
-    // // Reading the response from the server and printing it to the console
-    // read(sock, buffer1, 1024);
-    // std::cout << "Message received: " << buffer1 << std::endl;
-    
-    // return 0;

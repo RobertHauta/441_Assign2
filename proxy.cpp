@@ -60,7 +60,7 @@ int acceptSocket(struct sockaddr_in address, int server_fd, int addrlen){
     return new_socket;
 }
 
-int main() {
+int main(int argc, char** argv) {
     int server_fd, return_sock, client_sock; // File descriptors for the server and the new client socket
     struct sockaddr_in address, serv_addr; // Structure containing an internet address
     int addrlen = sizeof(address);
@@ -152,17 +152,18 @@ int main() {
 
     //std::cout << buffer1 << std::endl;
     //std::string s = buffer1;
-
+    if(strcmp(argv[1], "frog") == 0){
     //regex for replacing frog with fred
-    std::regex frog("frog\\s|Frog\\s|FRog\\s|FROg\\s|FROG\\s|fROG\\s|frOG\\s|froG\\s|fRog\\s|frOg\\s|FrOG\\s|FRoG\\s|fRoG\\s|FrOg\\s|fRog\\s|frOg\\s");
-    s = std::regex_replace(s, frog, "fred ");
-    std::regex frogdash("\\sfrog-");
-    s = std::regex_replace(s, frogdash, " fred-");
-    std::regex frogs("frogs\\s|Frogs\\s|FRogs\\s|FROgs\\s|FROGs\\s|fROGs\\s|frOGs\\s|froGs\\s|fRogs\\s|frOgs\\s|FrOGs\\s|FRoGs\\s|fRoGs\\s|FrOgs\\s|fRogs\\s|frOgs\\s");
-    s = std::regex_replace(s, frogs, "freds ");
-    std::regex froggy("\\sfrogg");
-    s = std::regex_replace(s, froggy, " fredg");
-    std::cout << s << std::endl;
+        std::regex frog("frog\\s|Frog\\s|FRog\\s|FROg\\s|FROG\\s|fROG\\s|frOG\\s|froG\\s|fRog\\s|frOg\\s|FrOG\\s|FRoG\\s|fRoG\\s|FrOg\\s|fRog\\s|frOg\\s");
+        s = std::regex_replace(s, frog, "fred ");
+        std::regex frogdash("\\sfrog-");
+        s = std::regex_replace(s, frogdash, " fred-");
+        std::regex frogs("frogs\\s|Frogs\\s|FRogs\\s|FROgs\\s|FROGs\\s|fROGs\\s|frOGs\\s|froGs\\s|fRogs\\s|frOgs\\s|FrOGs\\s|FRoGs\\s|fRoGs\\s|FrOgs\\s|fRogs\\s|frOgs\\s");
+        s = std::regex_replace(s, frogs, "freds ");
+        std::regex froggy("\\sfrogg");
+        s = std::regex_replace(s, froggy, " fredg");
+        std::cout << s << std::endl;
+    }
 
     //sends data back to web browser
     send(return_sock, s.c_str(), s.length(), 0);
